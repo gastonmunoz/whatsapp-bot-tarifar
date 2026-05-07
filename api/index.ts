@@ -184,7 +184,22 @@ function verifySignature(req: Request): boolean {
 const app = express();
 app.use(express.json({ limit: '20mb' }));
 
-app.get('/', (_req, res) => {
+const healthHandler = (_req: Request, res: Response) => {
+  res.json({
+    ok: true,
+    bot: 'TarifAR',
+    slug: 'tarifar',
+    office: 'Decodificador de boletas de servicios publicos (luz, gas, agua)',
+    version: '0.1.0',
+    uptime_seconds: Math.floor((Date.now() - STARTED_AT) / 1000),
+    active_phones_in_memory: states.size,
+    deployed_at: DEPLOYED_AT,
+  });
+};
+app.get('/', healthHandler);
+app.get('/api', healthHandler);
+app.get('/api/health', healthHandler);
+app.get('/_unused_', (_req, res) => {
   res.json({
     ok: true,
     bot: 'TarifAR',
