@@ -10,7 +10,7 @@
     "start:prod": "node dist/main.js",
     "test": "jest --passWithNoTests",
     "test:e2e": "jest --config ./test/jest-e2e.json --passWithNoTests",
-    "vercel-build": "nest build"
+    "vercel-build": "echo 'no build needed'"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
